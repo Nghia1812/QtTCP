@@ -6,6 +6,7 @@ ServerManager::ServerManager(ushort port, QObject *parent)
     setupServer(port);
 }
 
+
 void ServerManager::newClientConnectionReceived()
 {
     auto client = _server->nextPendingConnection();
@@ -44,3 +45,7 @@ void ServerManager::setupServer(ushort port)
 }
 
 
+void ServerManager::disconnectAll()
+{
+
+}

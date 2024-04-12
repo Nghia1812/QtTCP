@@ -19,15 +19,20 @@ public:
     ~MainWindow();
 
 private slots:
-    void dataReceived(QByteArray data);
-
+    void dataReceived(QString message);
 
     void on_actionConnect_triggered();
 
     void on_btnSend_clicked();
 
+    void on_lnClientName_editingFinished();
+
+    void on_cbStatus_currentIndexChanged(int index);
+
+    void onTyping();
 private:
     Ui::MainWindow *ui;
     ClientManager *_client;
+    void setupClient();
 };
 #endif // MAINWINDOW_H

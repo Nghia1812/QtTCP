@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "chatprotocol.h"
 #include "servermanager.h"
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +28,12 @@ private slots:
     void newClientConnected(QTcpSocket *client);
     //signal &ServerManager::clientDisconnected
     void clientDisconnected(QTcpSocket *client);
+
+    void setClientName(QString name);
+    void setClientStatus(ChatProtocol::Status status);
+    void on_disButton_clicked();
+    void on_tbChats_tabCloseRequested(int index);
+
 private:
     void setupServer();
 };

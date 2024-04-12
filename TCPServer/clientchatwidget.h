@@ -3,6 +3,11 @@
 
 #include <QWidget>
 #include <QTcpSocket>
+#include <ClientManager.h>
+
+/*
+ * This is displayed when a new client connects to server
+*/
 namespace Ui {
 class ClientChatWidget;
 }
@@ -15,15 +20,24 @@ public:
     explicit ClientChatWidget(QTcpSocket *client, QWidget *parent = nullptr);
     ~ClientChatWidget();
 
+    //used for on_tbChats_tabCloseRequested slot
+    void disconnect();
+
 private:
     Ui::ClientChatWidget *ui;
-    QTcpSocket *_client;
+    ClientManager *_client;
 
 private slots:
-    //signal &QTcpSocket::readyRead
-    void dataReceived();
+    void clientDisconnected();
     void on_btnSend_clicked();
+    void textMessageReceived(QString message);
+    void onTyping();
 
+signals:
+    //to notify server when clients' states change
+    void clientNameChanged(QString name);
+    void isTyping(QString message);
+    void statusChanged(ChatProtocol::Status status);
 };
 
 #endif // CLIENTCHATWIDGET_H

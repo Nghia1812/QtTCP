@@ -9,17 +9,24 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chatitemwidget.cpp \
+    chatprotocol.cpp \
     clientchatwidget.cpp \
+    clientmanager.cpp \
     main.cpp \
     mainwindow.cpp \
     servermanager.cpp
 
 HEADERS += \
+    chatitemwidget.h \
+    chatprotocol.h \
     clientchatwidget.h \
+    clientmanager.h \
     mainwindow.h \
     servermanager.h
 
 FORMS += \
+    chatitemwidget.ui \
     clientchatwidget.ui \
     mainwindow.ui
 
@@ -29,4 +36,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    icon.qrc
+    assets.qrc

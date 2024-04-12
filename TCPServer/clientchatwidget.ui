@@ -18,7 +18,7 @@
     <widget class="QListWidget" name="lstMessage"/>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="sendLayout">
      <item>
       <widget class="QLabel" name="label">
        <property name="text">

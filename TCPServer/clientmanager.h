@@ -5,27 +5,29 @@
 #include <QObject>
 #include <QTcpSocket>
 
+/*
+* Allows server to change some states of clients
+* Commented outs are unecessary
+*/
 
 class ClientManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit ClientManager(QHostAddress ip = QHostAddress::LocalHost, ushort port = 4500, QObject *parent = nullptr);
-    void connectToServer();
+    //explicit ClientManager(QHostAddress ip = QHostAddress::LocalHost, ushort port = 4500, QObject *parent = nullptr);
+    explicit ClientManager(QTcpSocket *client, QObject *parent = nullptr); //for server side
+    //void connectToServer();
 
-
-    //senb message with specific types to server
     void sendMessage(QString message);
-    void sendName(QString name);
-    void sendStatus(ChatProtocol::Status status);
-    void sendIsTyping();
+    // void sendName(QString name);
+    // void sendStatus(ChatProtocol::Status status);
+    QString name() const;
 
+    void sendIsTyping();
+    void disconnectFromHost();
 signals:
-    //Signals connected with slots in mainwindow class
     void connected();
     void disconnected();
-
-    //Signals to notify ...
     void textMessageReceived(QByteArray message);
     void isTyping();
     void nameChanged(QString name);
@@ -37,8 +39,8 @@ private slots:
 
 private:
     QTcpSocket *_socket;
-    QHostAddress _ip;
-    ushort _port;
+    //QHostAddress _ip;
+    //ushort _port;
     ChatProtocol _protocol;
 
 private:
